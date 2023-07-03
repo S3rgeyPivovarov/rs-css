@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Page</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        text-align: center;
+      }
+      .game {
+        margin-top: 20px;
+      }
+      .game button {
+        font-size: 20px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Привет)</h1>
+    <p>
+      Работу я не сделал, отстал, буду пробывать еще раз на следующем потоке.
+      Поставте минимальный балл, хочу посмотреть реализации студентов. Спасибо)
+    </p>
+    <div class="game">
+      <button
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+        onclick="changeColor()"
+      >
+        Change Background Color
+      </button>
+    </div>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script>
+      var colors = [
+        { name: "Crimson", hex: "#DC143C" },
+        { name: "Coral", hex: "#FF7F50" },
+        { name: "Khaki", hex: "#F0E68C" },
+        { name: "Olive", hex: "#808000" },
+        { name: "Teal", hex: "#008080" },
+        { name: "Navy", hex: "#000080" },
+        { name: "Fuchsia", hex: "#FF00FF" },
+        { name: "Lavender", hex: "#E6E6FA" },
+        { name: "Silver", hex: "#C0C0C0" },
+        { name: "Maroon", hex: "#800000" },
+        { name: "Sienna", hex: "#A0522D" },
+        { name: "Salmon", hex: "#FA8072" },
+        { name: "Turquoise", hex: "#40E0D0" },
+        { name: "Orchid", hex: "#DA70D6" },
+        { name: "Peru", hex: "#CD853F" },
+        { name: "Plum", hex: "#DDA0DD" },
+        { name: "PowderBlue", hex: "#B0E0E6" },
+        { name: "RosyBrown", hex: "#BC8F8F" },
+        { name: "RoyalBlue", hex: "#4169E1" },
+        { name: "SaddleBrown", hex: "#8B4513" },
+        { name: "SandyBrown", hex: "#F4A460" },
+        { name: "SeaGreen", hex: "#2E8B57" },
+        { name: "SeaShell", hex: "#FFF5EE" },
+        { name: "SkyBlue", hex: "#87CEEB" },
+        { name: "SlateBlue", hex: "#6A5ACD" },
+        { name: "SlateGray", hex: "#708090" },
+        { name: "Snow", hex: "#FFFAFA" },
+        { name: "SpringGreen", hex: "#00FF7F" },
+        { name: "SteelBlue", hex: "#4682B4" },
+        { name: "Tan", hex: "#D2B48C" },
+      ];
+      function changeColor() {
+        var currentColor = document.body.style.backgroundColor;
+        var index = colors.findIndex(function (color) {
+          return color.hex === currentColor;
+        });
+        var nextIndex = Math.floor(Math.random() * colors.length);
+        while (nextIndex === index) {
+          nextIndex = Math.floor(Math.random() * colors.length);
+        }
+        document.body.style.backgroundColor = colors[nextIndex].hex;
+        document.querySelector("button").textContent =
+          colors[nextIndex].name + " (" + colors[nextIndex].hex + ")";
+        var textColor = getContrastYIQ(colors[nextIndex].hex);
+        document.body.style.color = textColor;
+      }
+
+      function getContrastYIQ(hexcolor) {
+        hexcolor = hexcolor.replace("#", "");
+        var r = parseInt(hexcolor.substr(0, 2), 16);
+        var g = parseInt(hexcolor.substr(2, 2), 16);
+        var b = parseInt(hexcolor.substr(4, 2), 16);
+        var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+        return yiq >= 128 ? "black" : "white";
+      }
+    </script>
+  </body>
+</html>
